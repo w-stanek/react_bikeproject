@@ -13,7 +13,7 @@ export default class AddExtras extends Component {
                 Nosic na tazne + 10%
                 </label><br/>
                 <label>
-                <input type="radio" value="1" name="extra"/>
+                <input type="radio" value="1" name="extra" defaultChecked/>
                 Bez nosice
                 </label><br/>
             </div>

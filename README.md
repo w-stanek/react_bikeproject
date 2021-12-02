@@ -1,2 +1,2 @@
-Testovaci formular v reactu
-cena vsech kol je hardcoded na 100kc
+Testovaci formular v reactu  
+cena vsech kol je hardcoded na 100kc  

@@ -14,14 +14,14 @@ export default class App extends Component {
 
       totalPrice: 0,
       rentDays: 1,
-      extras: 0,
+      extras: 1,
       MaxPrice: 100,
       bikes: [
         {
           id: '1',
           label: "horske",
           price: 100,
-          count: 2,
+          count: 1,
           checked: false
 
         },
