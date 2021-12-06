@@ -1,2 +1,2 @@
-Testovaci formular v reactu  
-cena vsech kol je hardcoded na 100kc  
+Skolni projekt pujcovny kol
+obsah karet se dynamicky vykresluje z pole

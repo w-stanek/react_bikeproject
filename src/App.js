@@ -5,7 +5,6 @@ import BikeType from './components/BikeType'
 import TotalCount from './components/TotalCount'
 import DayNumber from './components/DayNumber'
 import AddExtras from './components/AddExtras'
-import ComparePrice from './components/ComparePrice'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,39 +14,54 @@ export default class App extends Component {
       totalPrice: 0,
       rentDays: 1,
       extras: 1,
-      MaxPrice: 100,
       bikes: [
         {
-          id: '1',
+          id: "1",
           label: "horske",
           price: 100,
           count: 1,
-          checked: false
+          checked: false,
+          description: "toto je horske kolo",
+          img: "img/bike1.jpg"
 
         },
         {
-          id: '2',
+          id: "2",
           label: "detske",
-          price: 100,
+          price: 50,
           count: 1,
-          checked: false
+          checked: false,
+          description: "toto je detske kolo",
+          img: "img/bike2.jpg"
 
         },
         {
-          id: '3',
+          id: "3",
           label: "silnicni",
-          price: 100,
+          price: 150,
           count: 1,
-          checked: false
-
+          checked: false,
+          description: "",
+          img: "img/bike3.jpg"
         },
         {
-          id: '4',
-          label: "gravel",
-          price: 100,
+          id: "4",
+          label: "damske",
+          price: 200,
           count: 1,
-          checked: false
+          checked: false,
+          description: "",
+          img: ""
+        },
 
+        {
+          id: "5",
+          label: "gravel",
+          price: 200,
+          count: 1,
+          checked: false,
+          description: "toto je gravel kolo",
+          img: "img/bike4.jpg"
         },
 
       ],
@@ -86,31 +100,40 @@ export default class App extends Component {
   handleSum = () => {
     console.log('handle sum fired')
     let checkedBikes = this.state.bikes.filter(bike => bike.checked === true)
-    let total = (Math.floor((checkedBikes.reduce((a, v) => a = (a + v.price * v.count), 0)) * this.state.rentDays*this.state.extras))
+    let total = (Math.floor((checkedBikes.reduce((a, v) => a = (a + v.price * v.count), 0)) * this.state.rentDays * this.state.extras))
     console.log(total)
     this.setState({ totalPrice: total })
   }
   handleMaxValChange = (event) => {
     console.log(`handleMaxChange fired`)
-    this.setState({ MaxPrice: event.target.value})
+    this.setState({ MaxPrice: event.target.value })
   }
 
   render() {
+    console.log('app running')
     return (
-      <div className='App'>
-        <fieldset>
-          <legend>
+      <div className='App mb-5'>
+        <div className="container text-center">
+          <legend >
             <h2>Pujcovna kol</h2>
           </legend>
-          {this.state.bikes.map((bike) => <BikeType
-            id={bike.id}
-            key={bike.id}
-            label={bike.label}
-            value={bike.count}
-            checked={bike.checked}
-            onChange={(event) => this.handleChange(event)}
-          />)}
+          <div className="row">
+            {this.state.bikes.map((bike) => <BikeType
+              className={"col-md-6 col-lg-4"}
+              id={bike.id}
+              key={bike.id}
+              label={bike.label}
+              price={bike.price}
+              img={bike.img}
+              description={bike.description}
+              value={bike.count}
+              checked={bike.checked}
+              onChange={(event) => this.handleChange(event)}
+            />)}
+          </div>
+          <hr />
           <DayNumber
+            className={"col-8 offset-2 col-md-4 col-lg-4 offset-lg-4"}
             onChange={(event) => this.handleDayChange(event)}
           />
           <AddExtras
@@ -120,12 +143,8 @@ export default class App extends Component {
             onClick={this.handleSum}
             total={this.state.totalPrice}
           />
-          <ComparePrice
-            onChange={(event) => this.handleMaxValChange(event)}
-            value={this.state.MaxPrice}
-            total={this.state.totalPrice}
-          />
-        </fieldset>
+        </div>
+
       </div>
     )
   }
